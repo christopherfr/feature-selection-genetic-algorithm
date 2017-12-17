@@ -62,7 +62,7 @@ class Poblacion:
             self.fitness_total = self.fitness_total + fitness_especie
             self.fitness_results.append(fitness_especie)
 
-    def seleccion(self):
+    def seleccion(self): #Método 1
         self.lista_reproduccion = []
         # Ordena la poblacion y fitness_results en base a este último
         index = list(range(len(self.fitness_results)))
@@ -72,6 +72,14 @@ class Poblacion:
         for i in range(0, len(self.poblacion)):
             for j in range(0, i+1):
                 self.lista_reproduccion.append(self.poblacion[i])
+				
+    #def seleccion(self): #Método 2
+    #    self.lista_reproduccion = []
+    #    for i in range(0, len(self.poblacion)):
+    #        porcentaje_especie = float(self.fitness_results[i]) / self.fitness_total
+    #        n = int(porcentaje_especie * len(self.poblacion))
+    #        for j in range(0, n):
+    #            self.lista_reproduccion.append(self.poblacion[i])
 
     def reproduccion(self):
         self.poblacion = []
@@ -87,10 +95,6 @@ class Poblacion:
             fitness_especie = hijo.calcular_fitness()
             self.fitness_total = self.fitness_total + fitness_especie
             self.fitness_results.append(fitness_especie)
-
-    #def mutar(self):
-    #    for e in self.poblacion:
-    #        e.mutar()
 
     def promedio_fitness(self):
         return float(self.fitness_total) / len(self.fitness_results)
